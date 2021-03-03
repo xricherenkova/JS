@@ -60,7 +60,7 @@ a{
 	margin-top: 50px;
 }
 .hero-section-content{
-	margin-left: 60px;
+	margin-left: 200px;
 	margin-bottom: 100px;
 }
 
@@ -113,21 +113,25 @@ a{
 
 }
 .hero-section-img1{
-	margin: 0 50px 0 0;
+	margin: 0 150px 0 0;
 }
 
 .hero-section-img2{
 	margin: 0 200px 0 0;
 }
 .theory2{
+	
 	display: grid;
-	grid-template-columns: 700px 150px 200px;
+	grid-template-columns: 700px 450px ;
 	align-items: center;
 	margin-top: 50px;
+	margin-left: 300px;
 }
 .theory2-content{
 
-	
+	align-self: center;
+  justify-self: center;
+
 	margin: 0 50px 100px;
 }
 
