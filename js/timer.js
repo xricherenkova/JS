@@ -1,42 +1,80 @@
-var start = document.getElementById('start');
-var reset = document.getElementById('reset');
+const counter = document.querySelector('.counter');
+const btn = document.querySelector('.buttons');
+const secondsInput = document.getElementById('seconds');
 
-var h = document.getElementById("hour");
-var m = document.getElementById("minute");
-var s = document.getElementById("sec");
 
-var startTimer = null;
-start.addEventListener('click', function(){
-    function startInterval(){
-        startTimer = setInterval(function() {
-            timer();
-        }, 1000);
-    }
-    startInterval();
-})
-reset.addEventListener('click', function(){
-    h.value = 0;
-    m.value = 0;
-    s.value = 0;
-    stopInterval()
-})
-function timer(){
-    if(h.value == 0 && m.value == 0 && s.value == 0){
-        h.value = 0;
-        m.value = 0;
-        s.value = 0;
-    } else if(s.value != 0){
-        s.value--;
-    } else if(m.value != 0 && s.value == 0){
-        s.value = 59;
-        m.value--;
-    } else if(h.value != 0 && m.value == 0){
-        m.value = 60;
-        h.value--;
-    }
-    return;
+
+let seconds;
+let minuts;
+let remseconds;
+let toCount;
+
+function subm(){
+    if ( document.getElementById("seconds").value == "" ){
+        alert("Заполните поле!");
+        return false;}
+    display("submit", "start");
+    seconds = Number(secondsInput.value);
+    secondsInput.style.display = "none";
+    counting();
 }
 
-function stopInterval() {
-    clearInterval(startTimer);
+function display(first, second){
+    document.getElementById(first).style.display = "none";
+    document.getElementById(second).style.display = "block";
+}
+
+function check(stat){ //проверка какую кнопку нажали
+    toCount = stat.value;
+    if(stat.id == "start"){
+        display("start", "stop");
+    }
+    else if(stat.id == "stop"){
+        display("stop", "continue");
+    }
+    else{
+        display('continue', "stop");
+    }
+}
+
+function count(){
+
+    if(seconds > 0){
+       if(toCount == true){
+            seconds--;
+            remseconds = seconds % 60;
+            minuts = Math.floor(seconds / 60);
+
+            if(remseconds < 10){
+                remseconds = "0" + remseconds;
+            }
+
+            if(minuts < 10){
+                minuts = "0" + minuts;
+            }
+
+            counter.innerHTML = minuts + " : " + remseconds;
+       }
+    }
+    else{
+        counter.innerHTML = "Done!";
+        btn.style.opacity = '0';
+    }
+}
+
+function counting(){
+
+    remseconds = seconds % 60;
+    minuts = Math.floor(seconds / 60);
+
+    if(remseconds < 10){
+        remseconds = "0" + remseconds;
+    }
+
+    if(minuts < 10){
+        minuts = "0" + minuts;
+    }
+
+    counter.innerHTML = minuts + " : " + remseconds;
+    setInterval(count, 1000);
 }

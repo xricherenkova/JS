@@ -19,16 +19,16 @@ class Quiz
 	Click(index)
 	{
 		let value = this.questions[this.current].Click(index);
-		this.score += value;
+		this.score += value; //добавляем очки
 
 		let correct = -1;
 
-		if(value >= 1)
+		if(value >= 1)//если было добавлено хотя одно очко, то  ответ верный
 		{
 			correct = index;
 		}
 		else
-		{
+		{//иначе ищем, какой ответ может быть правильным
 			for(let i = 0; i < this.questions[this.current].answers.length; i++)
 			{
 				if(this.questions[this.current].answers[i].value >= 1)
@@ -44,7 +44,7 @@ class Quiz
 		return correct;
 	}
 
-	Next()
+	Next()//переход к следующему вопросу
 	{
 		this.current++;
 		
@@ -54,7 +54,7 @@ class Quiz
 		}
 	}
 
-	End()
+	End()//результат
 	{
 		for(let i = 0; i < this.results.length; i++)
 		{
@@ -96,7 +96,7 @@ class Result
 		this.text = text;
 		this.value = value;
 	}
-	Check(value)
+	Check(value)//проверка достаточно набрали очков
 	{
 		if(this.value <= value)
 		{
@@ -200,9 +200,9 @@ const quiz = new Quiz(1, questions, results);
 
 Update();
 
-function Update()
+function Update()//обновление теста
 {
-	if(quiz.current < quiz.questions.length) 
+	if(quiz.current < quiz.questions.length) //проверка есть ли ещё вопросы
 	{
 		headElem.innerHTML = quiz.questions[quiz.current].text;
 
