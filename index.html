@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS</title>
+	
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" href="./css/timer_style.css">
+	
+</head>
+<body>
+	<div class="navbar">
+		<li class="nav-link" class="1"><a href="#"> <span class="name">Learn JavaScript</span></a><br><div class="out"></div><p  id="downRes5" style="color:white; font-size: 20px; font-weight: bold;"></p></li>
+		<li class="nav-link"><a href="#triangle">Площадь треугольника</a></li>
+		<li class="nav-link"><a href="#compare">Сравнение</a></li>
+		<li class="nav-link"><a href="#min_max">Макс/Мин</a></li>
+		<li class="nav-link"><a href="#timer">Таймер</a></li>
+		<li class="nav-link"><a href="#test_q">Тест</a></li>
+		
+
+	</div>
+	
+	<div class="hero-section">
+		<div class="hero-section-content">
+			<h1>Добро пожаловать!</h1><br>
+			<h3>Тебя приветсвует <span class="name">Learn JavaScript</span></h3>
+			<hr>
+			<p>Здесь ты можешь познакомиться с основами языка JavaScript, зачем он нужен, для чего его можно использовать.</p>
+			<p>А мы постараемся, чтобы твоё знакомство прошло интересно и познавательно!</p>
+			<p>Напиши сюда своё имя!</p>
+			<form name="Greeting"><input type="text" name="Name"placeholder="Имя" class="form1" id="text1"></form><br>
+			<button class="btn1" onClick="Complete();">Save</button>
+		</div>
+		<div class="hero-section-img">
+			<img src="img/Logo1.png">
+		</div>
+		<script>
+			function Complete()
+			{
+				if ( document.Greeting.Name.value == "" )
+				{
+					alert ( "Пожалуйста заполните поле 'Ваше имя'." );
+					return false;
+				}
+				let name = document.getElementById("text1").value;
+				let Elem="Привет, " + document.Greeting.Name.value +"!"+
+				"\n Добро пожаловать на сайт Learn JavaScript! " ;
+				myStorage = window.localStorage;
+				let el_down = document.getElementById("downRes5");
+				let b = localStorage.setItem('name1',name);
+				el_down.innerHTML=localStorage.getItem(name);
+				
+				alert(Elem);
+				
+				document.querySelector('.out').textContent = localStorage.getItem('name1');
+
+			}
+			
+
+		</script>
+
+	</div>
+
+	<div class="theory">
+		<div class="theory-content">
+			<h1 align="center"><span class="name">JavaScript</span> - это</h1>			
+			
+			<p align="center"> язык программирования, который даёт возможность реализовывать сложное поведение веб-страницы. Каждый раз, когда вы видите веб-страницу, она не только отображает статическое содержимое, но и делает большее - своевременно отображает обновление контента, выводит интерактивные карты, 2D/3D анимацию, прокручивает видео и т.д.</p>	
+			<p align="center"> - будьте уверены, здесь не обошлось без JavaScript.</p>	
+		</div>
+
+	</div>
+	<br>
+
+	<div class="theory2">
+		<div class="theory2-content">
+			
+			<h3 align="center">С помощью <span class="name">JS</span> можно: </h3>
+			<p>- Взаимодействовать с HTML-элементами на странице и управлять их содержимым и стилями.</p>
+			<p>- Реагировать на действия пользователя, cобытия.</p>
+			<p>- Добавлять анимации и различные графические эффекты на веб-страницы.</p>
+			<p>- Запоминать данные на стороне клиента</p>
+			<p>- Задавать вопросы посетителю, показывать сообщения.</p>
+		</div>
+		<div>
+			<div class="hero-section-img1">
+				<img src="img/teory.png" width="250" height="400">
+			</div></div>
+			
+		</div>
+		<section id="triangle" class="triangle">
+			<div class="theory2" >
+				<div class="theory2-content">
+					<h2 class="triangle"align="center"id="triangle">Треугольник</h2>
+					<div class="triangle_text"align="center">
+						С помощью <span class="name">JavaScript</span> можно посчитать
+						площадь треугольника по заданным параметрам. Нужно лишь знать нужную формулу для
+						подсчета площади.
+						<br><br>
+						Для того чтобы вычислить площадь, укажи ниже высоту и основание  треугольника.
+					</div><br>
+					<div class="triangle_data"align="center">
+						<input type="number" min="0" placeholder="Высота" id="height" class="form1">
+						<br>
+						<input type="number" min="0" placeholder="Основание" id="base" class="form1">
+						<br>
+						<button class="btn2" onclick="triangle()">Вычислить</button>
+					</div>
+					
+					<br>
+					<div class="triangle_result"align="center">
+						<div class="result_text">Площадь:</div>
+						<p id="downRes" style="color:green; font-size: 20px; font-weight: bold;"> </p>					
+					</div>
+				</div>
+				<div class="hero-section-img2">
+					<img src="img/triangle.png" width="400" height="400">
+				</div>
+			</div>
+			<script>
+				function triangle() {
+					if ( document.getElementById("height").value == "" || document.getElementById("base").value == "")
+					{
+						alert ( "Чтобы посчитать площадь треугольника, заполните все поля !" );
+						return false;
+					}
+					if ( document.getElementById("height").value <= 0 || document.getElementById("base").value <= 0){
+						alert("Значения должны быть положительными!");
+						return false;
+					}
+
+					let h = document.getElementById("height");
+					let c = document.getElementById("base");
+
+					let height1 = parseInt(h.value);
+					let base1 = parseInt(c.value);
+
+					let el_down = document.getElementById("downRes");
+					if(height1<0 && base1<0){
+						alert("Значения должны быть положительными");
+						return false;
+					}
+					else{let pl = 0.5*height1*base1; 
+						el_down.innerHTML = pl;}
+						
+					}
+				</script>
+			</section>	
+			
+
+			<div class="theory"><div class="theory2-content">
+				<h1 style="color:black;"align="center" id="compare">  Сравнение строк </h1>
+				<h3 align="center">Можно сравнивать строки, например их длину.</h3>
+				<h3 align="center">Введите две строки, чтобы сравнить количество символов.</h3>
+				<div class="inner" align="center"><br>
+					<p >Первая строка:</p>
+					<input type="text"  id="string1" class="form1">
+
+					<p >Вторая строка:</p>
+					<input type="text"  id="string2" class="form1">
+					<br><br>
+					<button class="btn2" onclick="compare_string()">Сравнить</button>
+					<p id="downRes2" style="color:green; font-size: 20px; font-weight: bold;"> </p></div>			
+				</div>
+			</div>
+			<script> 
+
+
+				function compare_string() {
+					let el_down2 = document.getElementById("downRes2");
+					let r ="";
+					if ( document.getElementById("string1").value == "" || document.getElementById("string2").value == "")
+					{
+						r = "Чтобы сравнить строки, заполните все поля !";
+						el_down2.innerHTML=r;
+						alert ( "Чтобы сравнить строки, заполните все поля !" );
+						return false;
+					}
+
+					let string1 = document.getElementById("string1").value;
+					let string2 = document.getElementById("string2").value;
+
+
+					if(string1.length == string2.length){
+						r="true";
+						el_down2.innerHTML=r;				
+					}
+					else{
+						r="false";
+						el_down2.innerHTML=r;				
+					}
+				}
+			</script>
+
+
+			<div class="theory" >
+				<div class="theory2-content"align="center">
+					<h1 align="center"style="color:black;" id="min_max">  Мин/Макс значения </h1>
+					<h3 align="center">В JavaScript есть методы для определения минимального и максимального значения.</h3>
+					<h3 align="center">Введи числа и проверь работу этих методов!</h3>
+					<input type="number" placeholder="Число" class="arr" id="n1">
+					<input type="number" placeholder="Число" class="arr" id="n2">
+					<input type="number" placeholder="Число" class="arr" id="n3">
+					<input type="number" placeholder="Число" class="arr" id="n4">
+					<input type="number" placeholder="Число" class="arr" id="n5"><br><br>
+					<button class="btn2" onclick = "array()">Проверить</button><br><br>
+					<div class="result_text">Max:<p id="downRes3" style="color:green; font-size: 20px; font-weight: bold;"> </p></div>
+
+					<div class="result_text">Min:<p id="downRes4" style="color:green; font-size: 20px; font-weight: bold;"> </p></div>
+
+				</div>
+			</div>
+			<script>
+				function array(){
+					if ( document.getElementById("n1").value == "" || document.getElementById("n2").value == "" || document.getElementById("n3").value == ""|| document.getElementById("n4").value == ""|| document.getElementById("n5").value == "")
+					{
+						alert ( "Чтобы найти макс/мин, заполните все поля !" );
+						return false;
+					}
+					let list =[];
+					let element1 = parseInt(document.getElementById("n1").value);			
+					let element2 = parseInt(document.getElementById("n2").value);			
+					let element3 = parseInt(document.getElementById("n3").value);			
+					let element4 = parseInt(document.getElementById("n4").value);			
+					let element5 = parseInt(document.getElementById("n5").value);
+
+					let el_down3 = document.getElementById("downRes3");
+					let el_down4 = document.getElementById("downRes4");
+
+					list.push(element1);
+					list.push(element2);
+					list.push(element3);
+					list.push(element4);
+					list.push(element5);
+					console.log(list);
+
+					let max = Math.max(...list);
+
+					el_down3.innerHTML = max;
+
+					let min = Math.min(...list);
+
+					el_down4.innerHTML = min;
+				}
+
+
+			</script>
+
+			<div class="theory">
+				<h1 align="center"style="color:black;" id="timer"> Таймер </h1>
+				<div class="content"><div class="counter"></div>
+				<input id="seconds" type="number" placeholder="Секунды" name="timer1"><br>
+				<div class="buttons">
+					<button class="btn start" id="start" value="1" onclick="check(this)">Начать</button>
+					<button class="btn start" id="continue" value="1" onclick="check(this)">Продолжить</button>
+					<button class="btn stop" id="stop" value="0" onclick="check(this)">Стоп</button>
+					<button class="btn start" id="submit" onclick="subm()">Подтвердить</button><br>
+					<div class="result_text"><p id="downRes9" style="color:green; font-size: 20px; font-weight: bold;"> </p></div>
+				</div></div>
+				<script type="text/javascript" src="timer.js"></script>
+			</div>
+
+			<div class="theory">
+				<div class="wrapper1"align="center">
+					<h1 align="center"style="color:black;" id="test_q"> Тест </h1>
+					<iframe src="test.html" width="780" height="420" class="quiz-frame"></iframe>
+				</div>
+			</div>
+
+			<div class="theory">
+				<div class="theory2-content"align="center">
+					<h1 style="color:black;"> Заставка </h1>
+					<h3 >Чтобы открыть заставку нажмите на кнопку ниже</h3>
+					<button class="btn2" onclick = "document.location = 'screen.html'">...</button>
+				</div>
+			</div>	
+
+
+			<div class="theory">
+				<div class="theory2-content"align="center">
+					<h1 style="color:black;"> Задание 2 </h1>
+					<h3 >Напишите функцию, которая принимает массив строк. </h3>
+					<h3 >Вернуть самую длинную строку.</h3>
+					<input type="text"  id="input1" class="form1">
+					<input type="text"  id="input2" class="form1">
+					<input type="text"  id="input3" class="form1">
+					<input type="text"  id="input4" class="form1">
+					
+					<div class="answer">
+						<button id="button1" class="btn2" onclick = "get_value()">Ответ</button>
+
+						<p id="downRes7" style="color:green; font-size: 20px; font-weight: bold;">
+						</div>
+					</div>
+				</div>	
+				<script>
+					function get_value(){
+						if ( document.getElementById("input1").value == "" || document.getElementById("input2").value == "" || document.getElementById("input3").value == "" || document.getElementById("input4").value == ""  )
+						{
+							alert ( "Чтобы найти самую длинную строку, заполните все поля !" );
+							return false;
+						}
+						let arr =[];
+						let element1 = document.getElementById("input1").value;			
+						let element2 = document.getElementById("input2").value;			
+						let element3 = document.getElementById("input3").value;
+						let element4 = document.getElementById("input4").value;
+						
+
+						arr.push(element1);
+						arr.push(element2);
+						arr.push(element3);
+						arr.push(element4);
+						
+						console.log(arr);	
+						console.log(long_string(arr));
+					}	
+					
+					function long_string(arr) {
+						let el_down7 = document.getElementById("downRes7");
+						let longest = arr[0]; // устанавливаю первое значение в массиве, как самое длинное 
+						for (let i = 1; i < arr.length; i++) {
+							if (arr[i].length > longest.length) { //если сравнимая строка больше
+								longest = arr[i]; // то устанавливаю это значение
+							}
+						}
+						el_down7.innerHTML = longest;
+						return longest;								
+					}
+				</script>
+
+
+				<div class="theory">
+					<div class="theory2-content"align="center">
+						
+						<h3>Напишите функцию, которая принимает строку и возвращает символ, который чаще всего используется в строке.</h3>
+						<br><input type="text"  id="input4" class="form1"><br>
+						<button id="button1" class="btn2" onclick = "get_value2()">Ответ</button>
+						<p id="downRes8" style="color:green; font-size: 20px; font-weight: bold;">
+
+						</div>
+					</div>	
+
+
+					<div class="theory">
+						<div class="theory2-content"align="center">
+							
+							<h3>Замените в строке из предыдущего задания самый часто встречающийся символ на символ, который введет пользователь через prompt или input.</h3>
+							<br>
+							<button id="button1" class="btn2" onclick = "changeCommonChar()">Ответ</button>
+							<p id="downRes91" style="color:green; font-size: 20px; font-weight: bold;">
+							</div>
+						</div>	
+
+
+						<div class="theory">
+							<div class="theory2-content"align="center">
+								
+								<h3>Напишите функцию, принимающую 2 строки и возращающую true, если строки являются анаграммами.</h3>
+								<br><input type="text"  id="string11" class="form1">
+								<br><input type="text"  id="string12" class="form1"><br>
+								<button id="button1" class="btn2" onclick = "get_value4()">Ответ</button>
+								<p id="downRes10" style="color:green; font-size: 20px; font-weight: bold;">
+								</div>
+							</div>	
+							
+							
+
+							<script src="js/timer.js"></script>
+							<script src="js/find_longest.js.js"></script>
+							<script src="js/most_common_char.js"></script>
+							<script src="js/common_char.js"></script>
+							<script src="js/anagram.js"></script>
+							
+						</body>
+						</html>
